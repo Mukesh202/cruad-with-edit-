@@ -1,0 +1,52 @@
+<h1> Crud operation <i class="fa fa-id-card" aria-hidden="true"></i> </h1>
+<router-outlet></router-outlet>
+<div class="container">
+  <form #myForm= "ngForm">
+    <div class="form-group">
+      <label for="exampleInputfullDate" class="form-label">Date </label>
+      <input type="text" class="form-control" name="Date" aria-describedby="emailHelp" [(ngModel)]="userObj.Date" >
+       </div>
+       <div class="form-group">
+        <label for="exampleInputOpen" class="form-label">Open</label>
+        <input type="text" class="form-control" name="Open" aria-describedby="emailHelp" [(ngModel)]="userObj.Open" >
+         </div>
+         <div class="form-group">
+          <label for="exampleInputHigh" class="form-label">High</label>
+          <input type="text" class="form-control" name="High" aria-describedby="emailHelp" [(ngModel)]="userObj.High" >
+           </div>
+    <div class="form-group">
+      <label for="exampleInputLow" class="form-label">Low</label>
+      <input type="text" class="form-control" name="Low" [(ngModel)]="userObj.Low" >
+    </div>
+    <div class="form-group">
+      <label for="exampleInputClose" class="form-label">Close</label>
+      <input type="email" class="form-control" name="Close" aria-describedby="emailHelp" [(ngModel)]="userObj.Close" >
+       </div>
+ <br> <br> 
+ <button type="button" *ngIf="!isEdit" (click)="adduser(myForm.value)" class="btn btn-primary">Submit</button>
+ <button type="button" class="btn btn-secondary" *ngIf="isEdit"(click)="updateUser()"> update</button>
+  </form> <br> <br>
+  <table class="table" >
+    <thead>
+      <tr>
+   <th scope="col">Date</th>
+   <th scope="col">Open</th>
+  <th scope="col">High</th>
+        <th scope="col">Low</th>
+        <th scope="col">Close</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+  <tbody> 
+<tr *ngFor="let user of allUser" >
+  <td>{{user.Date}}</td>
+  <td>{{user.Open}}</td>
+  <td>{{user.High}}</td>
+  <td>{{user.Low}}</td>
+  <td>{{user.Close}}</td>
+  <td> <button (click)="editUser(user)" class="btn btn-warning"><i class="fas fa-pencil-alt"></i> edit </button>
+   <button (click)="deleteUser(user)" class="btn btn-danger"> <i class="fas fa-trash-alt"></i> delete </button> </td>
+    </tr>
+  </tbody>
+  </table>
+</div>
